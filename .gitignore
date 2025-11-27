@@ -1,0 +1,31 @@
+# Compiled class files
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Temporary files
+*.tmp
+*.bak
