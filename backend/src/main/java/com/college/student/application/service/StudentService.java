@@ -116,8 +116,8 @@ public class StudentService {
     private StudentResponse toResponse(Student student) {
         return new StudentResponse(
                 student.getNomorInduk(),
-                student.getNamaLengkap(),  // Dari entity (Rich Domain Model)
-                student.getUsia()           // Dari entity (Rich Domain Model)
+                student.getNamaLengkap(),
+                student.getUsia()
         );
     }
 }

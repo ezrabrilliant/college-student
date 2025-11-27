@@ -1,5 +1,6 @@
 package com.college.student.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -52,7 +53,11 @@ public class Student {
         this.tanggalLahir = tanggalLahir;
     }
     
-    
+    /**
+     * Gabung nama depan dan belakang
+     * @JsonIgnore buat mencegah Jackson serialize ke file JSON
+     */
+    @JsonIgnore
     public String getNamaLengkap() {
         if (namaBelakang == null || namaBelakang.trim().isEmpty()) {
             return namaDepan;
@@ -60,6 +65,11 @@ public class Student {
         return namaDepan + " " + namaBelakang;
     }
     
+    /**
+     * Hitung usia berdasarkan tanggal lahir
+     * @JsonIgnore buat mencegah Jackson serialize ke file JSON
+     */
+    @JsonIgnore
     public int getUsia() {
         if (tanggalLahir == null) {
             return 0;

@@ -27,6 +27,7 @@ public class JsonStudentRepository implements StudentRepository {
         this.dataFilePath = dataFilePath;
         this.objectMapper = new ObjectMapper();
         this.objectMapper.registerModule(new JavaTimeModule());
+        this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         this.students = new ArrayList<>();
     }
