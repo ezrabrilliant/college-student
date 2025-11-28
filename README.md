@@ -1,6 +1,16 @@
 # College Student Management System
 
-Aplikasi CRUD (Create, Read, Update, Delete) untuk mengelola data mahasiswa, dibangun dengan **Clean Architecture** menggunakan Java Spring Boot.
+Aplikasi CRUD (Create, Read, Update, Delete) untuk mengelola data mahasiswa, dibangun dengan **Clean Architecture** menggunakan Java Spring Boot dan **Single Page Application (SPA)** frontend.
+
+## 🎯 Features
+
+- ✅ **CRUD Operations** - Create, Read, Update, Delete data mahasiswa
+- ✅ **Clean Architecture** - Backend terstruktur dengan 4 layer
+- ✅ **RESTful API** - Endpoint yang clean dan konsisten
+- ✅ **SPA Frontend** - Modern UI tanpa page reload
+- ✅ **Responsive Design** - Optimal di desktop dan mobile
+- ✅ **Form Validation** - Validasi usia (15-100 tahun)
+- ✅ **SweetAlert2** - Notifikasi dan dialog yang menarik
 
 ## 🏗️ Architecture
 
@@ -35,19 +45,29 @@ backend/src/main/java/com/college/student/
 
 ## 🛠️ Tech Stack
 
+### Backend
 - **Java 17**
 - **Spring Boot 3.2.0**
 - **Maven** (build tool)
 - **Jackson** (JSON serialization)
 - **JSON File** (data storage)
 
+### Frontend
+- **HTML5** - Semantic markup
+- **CSS3** - Modern styling dengan CSS Grid & Flexbox
+- **JavaScript (ES6+)** - Vanilla JS, no framework
+- **Lucide Icons** - Icon library
+- **SweetAlert2** - Beautiful alerts & notifications
+- **Google Fonts (Inter)** - Typography
+
 ## 🚀 How to Run
 
 ### Prerequisites
 - Java 17 or higher
 - Maven 3.6+
+- Modern web browser
 
-### Run the Application
+### 1. Run Backend
 
 ```bash
 cd backend
@@ -55,6 +75,12 @@ mvn spring-boot:run
 ```
 
 Server akan berjalan di `http://localhost:8080`
+
+### 2. Run Frontend
+
+Buka file `frontend/index.html` di browser, atau gunakan Live Server extension di VS Code.
+
+> ⚠️ **Note:** Pastikan backend sudah berjalan sebelum menggunakan frontend.
 
 ## 📡 API Endpoints
 
@@ -197,6 +223,40 @@ Entity `Student` memiliki method `getNamaLengkap()` dan `getUsia()` yang menghit
 - **Testability** - Mudah di-unit test karena dependency injection
 - **Flexibility** - Mudah ganti implementasi (misal: dari JSON ke Database)
 - **Independence** - Domain layer tidak depend ke framework
+
+### Separate Response DTOs
+- `StudentResponse` - Untuk list (namaLengkap, usia)
+- `StudentDetailResponse` - Untuk edit form (namaDepan, namaBelakang, tanggalLahir)
+
+## 🖥️ Frontend Structure
+
+```
+frontend/
+├── index.html      # Main HTML file
+├── style.css       # Styling dengan CSS Variables
+└── app.js          # Application logic & API calls
+```
+
+### UI Features
+- **Modern Design** - Soft gradient background, rounded corners
+- **Toast Notifications** - SweetAlert2 toast di pojok kanan atas
+- **Delete Confirmation** - Dialog konfirmasi sebelum hapus
+- **Form Validation** - Validasi tanggal lahir (usia 15-100 tahun)
+- **Loading State** - Spinner saat fetch data
+- **Empty State** - Pesan ketika tidak ada data
+- **Responsive** - Mobile-friendly layout
+
+## 📸 Screenshots
+
+### Main View
+- Header dengan logo toga 🎓
+- Form untuk tambah/edit mahasiswa
+- Tabel daftar mahasiswa dengan aksi Edit & Hapus
+
+### Interactions
+- Toast notification untuk success/error
+- SweetAlert2 dialog untuk konfirmasi hapus
+- Form mode berubah saat edit (icon & text)
 
 ## 👤 Author
 
