@@ -246,17 +246,6 @@ frontend/
 - **Empty State** - Pesan ketika tidak ada data
 - **Responsive** - Mobile-friendly layout
 
-## 📸 Screenshots
-
-### Main View
-- Header dengan logo toga 🎓
-- Form untuk tambah/edit mahasiswa
-- Tabel daftar mahasiswa dengan aksi Edit & Hapus
-
-### Interactions
-- Toast notification untuk success/error
-- SweetAlert2 dialog untuk konfirmasi hapus
-- Form mode berubah saat edit (icon & text)
 
 ## 👤 Author
 
