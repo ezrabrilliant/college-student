@@ -1,7 +1,7 @@
 [
   {
     "nomorInduk" : "C14220315",
-    "namaDepan" : "Ezra Update",
+    "namaDepan" : "Ezra",
     "namaBelakang" : "Brilliant",
     "tanggalLahir" : "2004-08-27"
   },
@@ -10,5 +10,17 @@
     "namaDepan" : "Jason",
     "namaBelakang" : null,
     "tanggalLahir" : "2001-03-20"
+  },
+  {
+    "nomorInduk" : "D14220111",
+    "namaDepan" : "Olivia",
+    "namaBelakang" : "Tan",
+    "tanggalLahir" : "2004-01-02"
+  },
+  {
+    "nomorInduk" : "C14220311",
+    "namaDepan" : "Satriya",
+    "namaBelakang" : "Handha",
+    "tanggalLahir" : "2001-02-22"
   }
 ]

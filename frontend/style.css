@@ -24,20 +24,26 @@ header {
     padding: 20px 0;
 }
 
-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+.logo {
+    margin-bottom: 16px;
 }
 
-header h1 svg {
-    width: 36px;
-    height: 36px;
-    color: #5b7fa3;
+.logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #5b7fa3 0%, #7c6d9c 100%);
+    border-radius: 20px;
+    font-size: 40px;
+    box-shadow: 0 8px 24px rgba(91, 127, 163, 0.3);
+}
+
+header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 header p {
