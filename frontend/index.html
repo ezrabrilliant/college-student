@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Student Management</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
@@ -16,7 +23,7 @@
 
         <!-- Form Section -->
         <section class="form-section">
-            <h2 id="form-title">Tambah Mahasiswa Baru</h2>
+            <h2 id="form-title"><i data-lucide="user-plus"></i> Tambah Mahasiswa Baru</h2>
             <form id="student-form">
                 <input type="hidden" id="edit-mode" value="false">
                 
@@ -57,7 +64,7 @@
 
         <!-- Table Section -->
         <section class="table-section">
-            <h2>Daftar Mahasiswa</h2>
+            <h2><i data-lucide="users"></i> Daftar Mahasiswa</h2>
             <div class="table-container">
                 <table id="student-table">
                     <thead>
@@ -76,14 +83,13 @@
             <div id="empty-state" class="empty-state" style="display: none;">
                 <i data-lucide="inbox"></i>
                 <p>Belum ada data mahasiswa</p>
+                <span class="empty-hint">Tambahkan mahasiswa baru menggunakan form di atas</span>
             </div>
             <div id="loading" class="loading">
-                <i data-lucide="loader-2" class="spin"></i>
+                <div class="loader"></div>
                 <p>Memuat data...</p>
             </div>
         </section>
-
-        <div id="toast" class="toast"></div>
     </div>
 
     <script src="app.js"></script>

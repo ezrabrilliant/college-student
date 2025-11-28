@@ -37,7 +37,7 @@ public class StudentService {
     }
     
     /**
-     * Get student by Nomor Induk
+     * Get student by Nomor Induk (NIM)
      */
     public StudentDetailResponse getStudentById(String nomorInduk) {
         Student student = studentRepository.findById(nomorInduk)

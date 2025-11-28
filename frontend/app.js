@@ -8,6 +8,7 @@ const API_URL = 'http://localhost:8080/api/students';
 const studentForm = document.getElementById('student-form');
 const studentList = document.getElementById('student-list');
 const formTitle = document.getElementById('form-title');
+const formTitleIcon = document.querySelector('#form-title i');
 const submitBtn = document.getElementById('submit-btn');
 const btnText = document.getElementById('btn-text');
 const btnIcon = document.getElementById('btn-icon');
@@ -21,6 +22,39 @@ const emptyState = document.getElementById('empty-state');
 const loadingEl = document.getElementById('loading');
 const tableEl = document.getElementById('student-table');
 
+// SweetAlert2 Toast Configuration
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
+/**
+ * Show success notification
+ */
+function showSuccess(message) {
+    Toast.fire({
+        icon: 'success',
+        title: message
+    });
+}
+
+/**
+ * Show error notification
+ */
+function showError(message) {
+    Toast.fire({
+        icon: 'error',
+        title: message
+    });
+}
+
 /**
  * Fetch all students from API
  */
@@ -33,7 +67,7 @@ async function fetchStudents() {
         renderStudents(students);
     } catch (error) {
         console.error('Error fetching students:', error);
-        showToast('Gagal memuat data mahasiswa', 'error');
+        showError('Gagal memuat data mahasiswa');
     } finally {
         showLoading(false);
     }
@@ -58,11 +92,11 @@ async function createStudent(studentData) {
         }
         
         const newStudent = await response.json();
-        showToast(`Mahasiswa ${newStudent.namaLengkap} berhasil ditambahkan!`, 'success');
+        showSuccess(`Mahasiswa ${newStudent.namaLengkap} berhasil ditambahkan!`);
         return newStudent;
     } catch (error) {
         console.error('Error creating student:', error);
-        showToast(error.message, 'error');
+        showError(error.message);
         return null;
     }
 }
@@ -86,11 +120,11 @@ async function updateStudent(nim, studentData) {
         }
         
         const updatedStudent = await response.json();
-        showToast(`Data ${updatedStudent.namaLengkap} berhasil diperbarui!`, 'success');
+        showSuccess(`Data ${updatedStudent.namaLengkap} berhasil diperbarui!`);
         return updatedStudent;
     } catch (error) {
         console.error('Error updating student:', error);
-        showToast(error.message, 'error');
+        showError(error.message);
         return null;
     }
 }
@@ -109,11 +143,11 @@ async function deleteStudent(nim) {
             throw new Error(error.message || 'Failed to delete student');
         }
         
-        showToast('Mahasiswa berhasil dihapus!', 'success');
+        showSuccess('Mahasiswa berhasil dihapus!');
         return true;
     } catch (error) {
         console.error('Error deleting student:', error);
-        showToast(error.message, 'error');
+        showError(error.message);
         return false;
     }
 }
@@ -128,7 +162,7 @@ async function fetchStudentDetail(nim) {
         return await response.json();
     } catch (error) {
         console.error('Error fetching student detail:', error);
-        showToast('Gagal memuat detail mahasiswa', 'error');
+        showError('Gagal memuat detail mahasiswa');
         return null;
     }
 }
@@ -178,16 +212,6 @@ function showLoading(show) {
     }
 }
 
-function showToast(message, type = 'success') {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.className = `toast ${type} show`;
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
-
 /**
  * Switch to edit mode
  */
@@ -199,7 +223,7 @@ async function editStudent(nim) {
     }
     
     editModeInput.value = nim;
-    formTitle.textContent = 'Edit Mahasiswa';
+    formTitle.innerHTML = '<i data-lucide="user-pen"></i> Edit Mahasiswa';
     btnText.textContent = 'Simpan Perubahan';
     btnIcon.setAttribute('data-lucide', 'save');
     lucide.createIcons();
@@ -225,7 +249,7 @@ async function editStudent(nim) {
 function resetForm() {
     studentForm.reset();
     editModeInput.value = 'false';
-    formTitle.textContent = 'Tambah Mahasiswa Baru';
+    formTitle.innerHTML = '<i data-lucide="user-plus"></i> Tambah Mahasiswa Baru';
     btnText.textContent = 'Tambah Mahasiswa';
     btnIcon.setAttribute('data-lucide', 'plus');
     lucide.createIcons();
@@ -234,10 +258,22 @@ function resetForm() {
 }
 
 /**
- * Confirm delete with dialog
+ * Confirm delete with SweetAlert2
  */
-function confirmDelete(nim, nama) {
-    if (confirm(`Apakah Anda yakin ingin menghapus mahasiswa "${nama}" (${nim})?`)) {
+async function confirmDelete(nim, nama) {
+    const result = await Swal.fire({
+        title: 'Hapus Mahasiswa?',
+        html: `Anda yakin ingin menghapus <strong>${nama}</strong> (${nim})?<br><small>Data yang dihapus tidak dapat dikembalikan.</small>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#b44141',
+        cancelButtonColor: '#6b7c93',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal',
+        reverseButtons: true
+    });
+    
+    if (result.isConfirmed) {
         handleDelete(nim);
     }
 }
@@ -273,12 +309,12 @@ function validateBirthDate(birthDate) {
     const age = calculateAge(birthDate);
     
     if (age < 15) {
-        showToast('Usia minimal mahasiswa adalah 15 tahun', 'error');
+        showError('Usia minimal mahasiswa adalah 15 tahun');
         return false;
     }
     
     if (age > 100) {
-        showToast('Tanggal lahir tidak valid (usia melebihi 100 tahun)', 'error');
+        showError('Tanggal lahir tidak valid (usia melebihi 100 tahun)');
         return false;
     }
     
