@@ -221,16 +221,7 @@ frontend/
 └── app.js          # Application logic & API calls
 ```
 
-### UI Features
-- **Modern Design** - Soft gradient background, rounded corners
-- **Toast Notifications** - SweetAlert2 toast di pojok kanan atas
-- **Delete Confirmation** - Dialog konfirmasi sebelum hapus
-- **Form Validation** - Validasi tanggal lahir (usia 15-100 tahun)
-- **Loading State** - Spinner saat fetch data
-- **Empty State** - Pesan ketika tidak ada data
-- **Responsive** - Mobile-friendly layout
-
 
 ## 👤 Author
 
-Ezra Brilliant - C14220315
+Ezra Brilliant Konterliem
