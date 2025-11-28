@@ -1,20 +1,10 @@
 # College Student Management System
 
-Aplikasi CRUD (Create, Read, Update, Delete) untuk mengelola data mahasiswa, dibangun dengan **Clean Architecture** menggunakan Java Spring Boot dan **Single Page Application (SPA)** frontend.
-
-## 🎯 Features
-
-- ✅ **CRUD Operations** - Create, Read, Update, Delete data mahasiswa
-- ✅ **Clean Architecture** - Backend terstruktur dengan 4 layer
-- ✅ **RESTful API** - Endpoint yang clean dan konsisten
-- ✅ **SPA Frontend** - Modern UI tanpa page reload
-- ✅ **Responsive Design** - Optimal di desktop dan mobile
-- ✅ **Form Validation** - Validasi usia (15-100 tahun)
-- ✅ **SweetAlert2** - Notifikasi dan dialog yang menarik
+Aplikasi CRUD (Create, Read, Update, Delete) untuk mengelola data mahasiswa, dibangun dengan menggunakan Java Spring-Boot dan basic html frontend.
 
 ## 🏗️ Architecture
 
-Project ini menggunakan **Clean Architecture** dengan 4 layer:
+Project ini menggunakan Architecture dengan 4 layer:
 
 ```
 backend/src/main/java/com/college/student/
@@ -217,12 +207,6 @@ Invoke-RestMethod -Uri "http://localhost:8080/api/students/C14220001" -Method DE
 
 ### Rich Domain Model
 Entity `Student` memiliki method `getNamaLengkap()` dan `getUsia()` yang menghitung nilai dari data yang tersimpan. Menggunakan `@JsonIgnore` untuk mencegah Jackson menyimpan computed properties ke file JSON.
-
-### Clean Architecture Benefits
-- **Separation of Concerns** - Setiap layer punya tanggung jawab sendiri
-- **Testability** - Mudah di-unit test karena dependency injection
-- **Flexibility** - Mudah ganti implementasi (misal: dari JSON ke Database)
-- **Independence** - Domain layer tidak depend ke framework
 
 ### Separate Response DTOs
 - `StudentResponse` - Untuk list (namaLengkap, usia)
