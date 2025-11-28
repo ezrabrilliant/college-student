@@ -2,7 +2,7 @@
 
 Aplikasi CRUD (Create, Read, Update, Delete) untuk mengelola data mahasiswa, dibangun dengan menggunakan Java Spring-Boot dan basic html frontend.
 
-## 🏗️ Architecture
+## 🏗️ Backend Architecture
 
 Project ini menggunakan Architecture dengan 4 layer:
 
@@ -203,14 +203,6 @@ Invoke-RestMethod -Uri "http://localhost:8080/api/students/C14220001" -Method PU
 Invoke-RestMethod -Uri "http://localhost:8080/api/students/C14220001" -Method DELETE
 ```
 
-## 📝 Design Decisions
-
-### Rich Domain Model
-Entity `Student` memiliki method `getNamaLengkap()` dan `getUsia()` yang menghitung nilai dari data yang tersimpan. Menggunakan `@JsonIgnore` untuk mencegah Jackson menyimpan computed properties ke file JSON.
-
-### Separate Response DTOs
-- `StudentResponse` - Untuk list (namaLengkap, usia)
-- `StudentDetailResponse` - Untuk edit form (namaDepan, namaBelakang, tanggalLahir)
 
 ## 🖥️ Frontend Structure
 
