@@ -3,6 +3,8 @@ package com.college.student.infrastructure.persistence;
 import com.college.student.domain.entity.Student;
 import com.college.student.domain.repository.StudentRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -20,6 +22,7 @@ import java.util.Optional;
 public class JsonStudentRepository implements StudentRepository {
     
     private final ObjectMapper objectMapper;
+    private final DefaultPrettyPrinter prettyPrinter;
     private final String dataFilePath;
     private List<Student> students;
     
@@ -28,7 +31,10 @@ public class JsonStudentRepository implements StudentRepository {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.registerModule(new JavaTimeModule());
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        
+        this.prettyPrinter = new DefaultPrettyPrinter();
+        this.prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+        
         this.students = new ArrayList<>();
     }
     
@@ -57,7 +63,7 @@ public class JsonStudentRepository implements StudentRepository {
             File file = new File(dataFilePath);
             // Create parent directories if not exists
             file.getParentFile().mkdirs();
-            objectMapper.writeValue(file, students);
+            objectMapper.writer(prettyPrinter).writeValue(file, students);
         } catch (IOException e) {
             System.err.println("Error saving data to file: " + e.getMessage());
         }
