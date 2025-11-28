@@ -1,6 +1,7 @@
 package com.college.student.application.service;
 
 import com.college.student.application.dto.CreateStudentRequest;
+import com.college.student.application.dto.StudentDetailResponse;
 import com.college.student.application.dto.StudentResponse;
 import com.college.student.application.dto.UpdateStudentRequest;
 import com.college.student.domain.entity.Student;
@@ -38,10 +39,10 @@ public class StudentService {
     /**
      * Get student by Nomor Induk
      */
-    public StudentResponse getStudentById(String nomorInduk) {
+    public StudentDetailResponse getStudentById(String nomorInduk) {
         Student student = studentRepository.findById(nomorInduk)
                 .orElseThrow(() -> new RuntimeException("Student not found with NIM: " + nomorInduk));
-        return toResponse(student);
+        return toDetailResponse(student);
     }
     
     /**
@@ -111,13 +112,25 @@ public class StudentService {
     }
     
     /**
-     * Convert Student entity to StudentResponse DTO
+     * Convert Student entity to StudentResponse DTO (for list display)
      */
     private StudentResponse toResponse(Student student) {
         return new StudentResponse(
                 student.getNomorInduk(),
                 student.getNamaLengkap(),
                 student.getUsia()
+        );
+    }
+    
+    /**
+     * Convert Student entity to StudentDetailResponse DTO (for edit form)
+     */
+    private StudentDetailResponse toDetailResponse(Student student) {
+        return new StudentDetailResponse(
+                student.getNomorInduk(),
+                student.getNamaDepan(),
+                student.getNamaBelakang(),
+                student.getTanggalLahir().format(dateFormatter)
         );
     }
 }

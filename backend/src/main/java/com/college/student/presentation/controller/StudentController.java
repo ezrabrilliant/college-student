@@ -1,6 +1,7 @@
 package com.college.student.presentation.controller;
 
 import com.college.student.application.dto.CreateStudentRequest;
+import com.college.student.application.dto.StudentDetailResponse;
 import com.college.student.application.dto.StudentResponse;
 import com.college.student.application.dto.UpdateStudentRequest;
 import com.college.student.application.service.StudentService;
@@ -39,11 +40,11 @@ public class StudentController {
     
     /**
      * GET /api/students/{nomorInduk}
-     * Ambil satu data mahasiswa berdasarkan NIM
+     * Ambil detail mahasiswa berdasarkan NIM (untuk edit form)
      */
     @GetMapping("/{nomorInduk}")
-    public ResponseEntity<StudentResponse> getStudentById(@PathVariable String nomorInduk) {
-        StudentResponse student = studentService.getStudentById(nomorInduk);
+    public ResponseEntity<StudentDetailResponse> getStudentById(@PathVariable String nomorInduk) {
+        StudentDetailResponse student = studentService.getStudentById(nomorInduk);
         return ResponseEntity.ok(student);
     }
     
